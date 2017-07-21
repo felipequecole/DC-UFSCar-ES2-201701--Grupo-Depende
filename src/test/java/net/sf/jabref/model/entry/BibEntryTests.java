@@ -1,5 +1,6 @@
 package net.sf.jabref.model.entry;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import net.sf.jabref.model.FieldChange;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.internal.util.reflection.Fields;
 
 import static org.junit.Assert.assertEquals;
 
@@ -401,4 +403,39 @@ public class BibEntryTests {
         be.clearField("author");
         assertEquals(Optional.empty(), be.getField("author"));
     }
+
+    @Test
+    public  void TestaBibTexKeyNum(){
+        BibEntry bt = new BibEntry();
+        bt.setCiteKey("1cf");
+        Assert.assertNotEquals(Optional.of("1cf"),bt.getCiteKeyOptional());
+
+    }
+
+    @Test
+    public void TestaBibTexKeyChar(){
+        BibEntry bt = new BibEntry();
+        bt.setCiteKey("c");
+        Assert.assertNotEquals(Optional.of("c"),bt.getCiteKeyOptional());
+    }
+
+    @Test
+    public  void TestaBibTestKey(){
+        BibEntry bt = new BibEntry();
+        bt.setCiteKey("frakson1997");
+        Assert.assertEquals(Optional.of("frakson1997"),bt.getCiteKeyOptional());
+    }
+
+    @Test
+    public void TestaYearletra(){
+        BibEntry bt = new BibEntry();
+        bt.setField("Year","1c97");
+
+        System.out.print(bt.getField("year"));
+
+        Assert.assertNotEquals("1c97","1997");
+
+
+    }
+
 }
