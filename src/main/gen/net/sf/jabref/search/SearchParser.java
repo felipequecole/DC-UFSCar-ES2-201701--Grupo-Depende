@@ -1,4 +1,4 @@
-// Generated from /home/eduardo/IdeaProjects/DC-UFSCar-ES2-201701--Grupo-Depende/src/main/antlr4/net/sf/jabref/search/Search.g4 by ANTLR 4.6
+// Generated from /home/frankson/IdeaProjects/DC-UFSCar-ES2-201701--Grupo-Depende/src/main/antlr4/net/sf/jabref/search/Search.g4 by ANTLR 4.6
 package net.sf.jabref.search;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;

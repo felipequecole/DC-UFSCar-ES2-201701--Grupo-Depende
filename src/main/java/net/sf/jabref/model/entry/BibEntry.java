@@ -35,6 +35,8 @@ import com.google.common.eventbus.EventBus;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import javax.swing.*;
+
 public class BibEntry implements Cloneable {
     private static final Log LOGGER = LogFactory.getLog(BibEntry.class);
 
@@ -195,7 +197,19 @@ public class BibEntry implements Cloneable {
      * @param newCiteKey The cite key to set. Must not be null; use {@link #clearCiteKey()} to remove the cite key.
      */
     public void setCiteKey(String newCiteKey) {
-        setField(KEY_FIELD, newCiteKey);
+
+        if (Character.isLetter(newCiteKey.charAt(0)) && (newCiteKey.length() >= 2)) {
+            setField(KEY_FIELD, newCiteKey);
+        } else if (!(newCiteKey.length() >= 2)){
+            JOptionPane.showMessageDialog(null,
+                    "Bibtexkey deve ter no minimo dois caracteres");
+        } else if (!(Character.isLetter(newCiteKey.charAt(0)))) {
+            JOptionPane.showMessageDialog
+                    (null,
+                            "Bibtexkey deve iniciar com uma letra maiuscula ou minuscula");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao criar Bibtexkey");
+        }
     }
 
     /**
@@ -459,6 +473,40 @@ public class BibEntry implements Cloneable {
 
         if (BibEntry.ID_FIELD.equals(fieldName)) {
             throw new IllegalArgumentException("The field name '" + name + "' is reserved");
+        }
+
+
+
+        if ("year".equals(name)) {
+            try {
+                if (!value.matches("^[0-9]+")) {
+                    throw new ParseException("", 0);
+                }
+
+                SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy");
+                df.setLenient(false);
+                df.parse(value);
+            } catch (ParseException e) {
+                throw new IllegalArgumentException("Invalid Year Format");
+            }
+
+
+        }
+
+        if ("Bibtexkey".equals(name)){
+
+            try{
+                if(!Character.isLetter(value.charAt(0))){
+                    throw new ParseException("", 0);
+                }else if (!(value.length()>=2)){
+                    throw new ParseException("", 0);
+                }
+
+            }catch (ParseException e){
+                throw new IllegalArgumentException("Invalid_BibTeX_key");
+            }
+
+
         }
 
         changed = true;
