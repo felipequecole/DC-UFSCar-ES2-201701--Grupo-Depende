@@ -29,7 +29,6 @@ public class ImportFormatReaderIntegrationTest {
         this.format = format;
         this.count = count;
         this.file = Paths.get(ImportFormatReaderIntegrationTest.class.getResource(resource).toURI());
-
     }
 
     @Before
