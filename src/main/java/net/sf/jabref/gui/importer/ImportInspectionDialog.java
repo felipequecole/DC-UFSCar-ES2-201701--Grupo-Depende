@@ -81,6 +81,7 @@ import net.sf.jabref.logic.bibtexkeypattern.BibtexKeyPatternUtil;
 import net.sf.jabref.logic.help.HelpFile;
 import net.sf.jabref.logic.importer.ImportInspector;
 import net.sf.jabref.logic.importer.OutputPrinter;
+import net.sf.jabref.logic.importer.ParserResult;
 import net.sf.jabref.logic.l10n.Localization;
 import net.sf.jabref.logic.util.UpdateField;
 import net.sf.jabref.model.Defaults;
@@ -164,6 +165,7 @@ public class ImportInspectionDialog extends JDialog implements ImportInspector, 
     private final boolean newDatabase;
     private final JPopupMenu popup = new JPopupMenu();
     private final JButton deselectAllDuplicates = new JButton(Localization.lang("Deselect all duplicates"));
+    private final JButton createNewDatabase = new JButton(Localization.lang("Create new database"));
     private final JButton stop = new JButton(Localization.lang("Stop"));
     private final PreviewPanel preview;
     private boolean generatedKeys; // Set to true after keys have been generated.
@@ -270,6 +272,7 @@ public class ImportInspectionDialog extends JDialog implements ImportInspector, 
         JButton deselectAll = new JButton(Localization.lang("Deselect all"));
         builder.addButton(deselectAll);
         builder.addButton(deselectAllDuplicates);
+        builder.addButton(createNewDatabase);
         builder.addRelatedGap();
         JButton delete = new JButton(Localization.lang("Delete"));
         builder.addButton(delete);
@@ -308,6 +311,23 @@ public class ImportInspectionDialog extends JDialog implements ImportInspector, 
             glTable.repaint();
         });
         deselectAllDuplicates.setEnabled(false);
+        createNewDatabase.addActionListener(e -> {
+            BibDatabase database = new BibDatabase();
+            MetaData localMetaData = new MetaData();
+            //BibEntry entry = new BibEntry();
+
+            for (BibEntry entry : this.entries){
+              database.insertEntry(entry);
+
+            }
+
+            ParserResult p = new ParserResult(database);
+            frame.addTab(p.getDatabaseContext(), true);
+            dispose();
+
+
+
+        });
         delete.addActionListener(deleteListener);
         getContentPane().add(bb.getPanel(), BorderLayout.SOUTH);
 

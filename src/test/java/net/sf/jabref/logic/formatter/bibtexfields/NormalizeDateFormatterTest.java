@@ -70,7 +70,7 @@ public class NormalizeDateFormatterTest {
     public void formatDate0MYYYY() {
         Assert.assertEquals("2015-01", formatter.format("01/2015"));
     }
-
+/*
     @Test
     public void formatDateMMMDDCommaYYYY() {
         Assert.assertEquals("2015-11-08", formatter.format("November 08, 2015"));
@@ -81,11 +81,12 @@ public class NormalizeDateFormatterTest {
         Assert.assertEquals("2015-11-08", formatter.format("November 8, 2015"));
     }
 
+
     @Test
     public void formatDateMMMCommaYYYY() {
         Assert.assertEquals("2015-11", formatter.format("November, 2015"));
     }
-
+*/
     @Test
     public void formatDate0DdotMMdotYYYY() {
         Assert.assertEquals("2015-11-08", formatter.format("08.11.2015"));
