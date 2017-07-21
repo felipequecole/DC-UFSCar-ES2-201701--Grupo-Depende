@@ -50,9 +50,9 @@ public class CSVImporter extends Importer {
                 String[] fields = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
                 BibEntry be = new BibEntry();
                 be.setType(BibtexEntryTypes.TECHREPORT);
-                be.setField("year", fields[5]);
-                be.setField("author", fields[1]);
-                be.setField("title", fields[0]);
+                be.setField("year", fields[5].replace("\"", ""));
+                be.setField("author", fields[1].replace("\"", ""));
+                be.setField("title", fields[0].replace("\"", ""));
                 bibitems.add(be);
                 line = input.readLine();
             }
