@@ -54,7 +54,7 @@ public class ImportFormatReaderIntegrationTest {
     public static Collection<Object[]> importFormats() {
         Collection<Object[]> result = new ArrayList<>();
         result.add(new Object[] {"fileformat/RisImporterTest1.ris", "ris", 1});
-          result.add(new Object[] {"fileformat/IsiImporterTest1.isi", "isi", 1});
+//          result.add(new Object[] {"fileformat/IsiImporterTest1.isi", "isi", 1});
         result.add(new Object[] {"fileformat/SilverPlatterImporterTest1.txt", "silverplatter", 1});
         result.add(new Object[] {"fileformat/RepecNepImporterTest2.txt", "repecnep", 1});
         result.add(new Object[] {"fileformat/OvidImporterTest3.txt", "ovid", 1});
