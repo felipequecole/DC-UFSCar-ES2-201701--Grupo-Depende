@@ -39,6 +39,18 @@ apply plugin: 'me.champeau.gradle.jmh'
 
 apply plugin: 'checkstyle'
 
+// Jacoco plugin
+apply plugin: "jacoco"
+
+jacoco {
+    applyTo run
+}
+
+task applicationCodeCoverageReport(type: JacocoReport){
+    executionData run
+    sourceSets sourceSets.main
+}
+
 apply from: 'eclipse.gradle'
 apply from: 'localization.gradle'
 apply from: 'xjc.gradle'
@@ -130,6 +142,8 @@ dependencies {
     compile 'de.undercouch:citeproc-java:1.0.1'
 
     compile 'com.github.lgooddatepicker:LGoodDatePicker:8.3.0'
+
+    compile 'org.apache.poi:poi:3.16'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.6.2'
@@ -268,7 +282,7 @@ processTestResources.dependsOn copyTestResources
 tasks.withType(Test) {
     reports.html.destination = file("${reporting.baseDir}/${name}")
     jacoco {
-        append = true
+        append = false
     }
 }
 
